@@ -15,30 +15,32 @@ public class KeyboardRow {
 	    	Map<Character,Integer> charmap = new HashMap<Character, Integer>();
 	    	for(int i=0; i<line.length ; i++){
 	    		for(char c: line[i].toCharArray()){
-	    			System.out.println("Hi");
 	    			charmap.put(c, i);
 	    		}
 	    	}
 	    	
 	    	for(String word:words){
-	    		char first = word.charAt(0);
-	    		System.out.println("First " + first);
-	    		System.out.println("charmap "+charmap.get(first));
+	    		char first = Character.toLowerCase(word.charAt(0));
 	    		int firstval = charmap.get(first);
-	    		for (int j=1; j<word.length(); j++){
-	    			if(charmap.get(word.charAt(j)) != firstval)
+	    		int j=0;
+	    		/*if(word.length()==1)
+	    			outputList.add(word);*/
+	    		for (; j<word.length(); j++){
+	    			if(charmap.get(Character.toLowerCase(word.charAt(j))) != firstval)
 	    				break;
-	    			outputList.add(word);
+	    			if(j==word.length()-1)
+	    				outputList.add(word);
 	    		}
 	    	}
-	    	String[] output = (String[]) outputList.toArray();
+	    	System.out.println("output list: "+outputList.toString());
+	    	String[] output = (String[]) outputList.toArray(new String[0]);
 	        return output;
 	    }
 	
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String[] str = new String[]{"Hello","Alaska","Dad", "Piece"}; 
+		String[] str = new String[]{"Hello","Alaska","Dad", "Piece","a","b"}; 
 		System.out.println(Arrays.toString(findWords(str)));
 	}
 
